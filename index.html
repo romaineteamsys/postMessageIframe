@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Index</title>
+</head>
+<body>
+
+<iframe id='myIframe' src="iframe.html" width="100%" frameBorder="0" scrolling="no" margin="0"></iframe>
+
+<script type="text/javascript">
+
+	function init() {
+		var eventMethod = window.addEventListener
+			? "addEventListener"
+			: "attachEvent";
+		var eventer = window[eventMethod];
+		var messageEvent = eventMethod === "attachEvent"
+			? "onmessage"
+			: "message";
+
+		eventer(messageEvent, function (e) {
+			var iframe = document.getElementById('myIframe');
+			iframe.setAttribute('height', e.data + 'px')
+		});
+	}
+	
+
+	window.onload = init;
+</script>
+</body>
+</html>
